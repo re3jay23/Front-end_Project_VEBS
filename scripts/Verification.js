@@ -1,30 +1,11 @@
+
+$(document).ready(function(){
+	
+})
+
 var temp_number =[];
-var numerical_position=[1,2,3,5,6,7,9,10,11,12];
-function phoneMask(input){
-		
-	var placeholder = input.getAttribute('placeholder');
-	var placeholder_array = String(placeholder).split("",13);
-	var sp_note = document.getElementById("Telephone_notification");
-	
-	if(input.value.length == 10){
+const numerical_position=[1,2,3,5,6,7,9,10,11,12];
 
-		var mask ="";
-		var phone = String(input.value);
-		phone.split("",10);
-		for(i=0;i < phone.length;i++){
-			placeholder_array[numerical_position[i]] = phone[i];
-		}
-		mask = placeholder_array.join('');
-
-		input.value = mask;
-		input.setAttribute('maxLength',13);
-	
-	}
-			
-		
-
-
-}
 
 function verifyZip(input){
 	console.log("input length",input.value.length);
@@ -36,7 +17,7 @@ function verifyZip(input){
 	else{
 		document.getElementById("err_notification1").style.display="none";
 	}
-	
+
 }
 function verifyPhone(i){
 
@@ -47,20 +28,20 @@ function verifyPhone(i){
 	//console.log("type1: ", type1);
 	//console.log("type2: ", type2);
 	var telephoneFormat =(/\(?\d{3}[\)|-](\d{3})-(\d{4})/).test(i.value);
-	
+
 	//console.log("telephoneFormat: ", telephoneFormat);
 	//console.log("length input", i.value.length);
 	try{
 		if(telephoneFormat == false || i.value.length >13) throw "Please type 10 digit phone number in the following format (123)456-7891";
 		//else if(type2) throw "Please type as in this format (XXX)XXX-XXXX";
 		else notification.style.display ="none";
-		
+
 	}
 	catch(err){
 		notification.innerHTML = err;
 		notification.setAttribute("style","display: block; color:red")
 	}
-	
+
 }
 function verifyDOB(i,DOB_span){
 	var correctDOB = (/^(0?[1-9]|1[012])[\/](0?[1-9]|[12][0-9]|3[01])[\/](19\d{2}|20[012][1-8])/).test(i.value);
@@ -74,7 +55,7 @@ function verifyDOB(i,DOB_span){
 	catch(err){
 		DB_errorspan.innerHTML = "Input is "+ err;
 		DB_errorspan.setAttribute("style","display: block; color:red")
-	}			
+	}
 }
 
 function displaySpouseForm(a){
@@ -83,7 +64,7 @@ function displaySpouseForm(a){
 	}else{
 		document.getElementById('SpouseForm_col').style.display = "none";
 	}
-	
+
 }
 
 function verifyAge(i,Age_span){
@@ -98,9 +79,6 @@ function verifyAge(i,Age_span){
 	catch(err){
 		age_errorspan.innerHTML = err;
 		age_errorspan.setAttribute("style","display: block; color:red")
-		
+
 	}
 }
-
-
-

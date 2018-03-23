@@ -1,0 +1,18 @@
+
+Name
+Address
+DOB
+Married y/n
+Spouse name
+DOB spouse
+child under 18 yrs old - ask age
+
+username:
+password 
+confirm password
+
+Payment 
+cc number
+cc name 
+security code
+

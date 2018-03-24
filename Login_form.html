@@ -12,7 +12,23 @@
 		<script type="text/javascript" src="./scripts/Verification.js"></script>
 		<!-- Bootstrap stylesheet -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<!-- CSS -->
+		<style>
 
+			.select-DOB{
+					width:30%;
+					height:2.5em;
+					border-radius: 5px;
+					border: 1px solid #c0c0c0;
+			}
+			#SpouseForm_col,#ChildForm_col, #VerifySuccess_span{
+				display: none;
+			}
+			#TableButton_div{
+
+			}
+
+		</style>
 	</head>
 	<body>
 		<div class="container" id="form_container">
@@ -61,62 +77,7 @@
 						<div class="form-group">
 							<label class="col-form-label">State</label>
 								<select class="form-control" id="State" >
-									<option value="---">---</option>
-									<option value="Alabama">Alabama</option>
-									<option value="Alaska">Alaska</option>
-									<option value="Arizona">Arizona</option>
-									<option value="Arkansas">Arkansas</option>
-									<option value="California">California</option>
-									<option value="Colorado">Colorado</option>
-									<option value="Connecticut">Connecticut</option>
-									<option value="Delaware">Delaware</option>
-									<option value="District of Columbia">District of Columbia</option>
-									<option value="Florida">Florida</option>
-									<option value="Georgia">Georgia</option>
-									<option value="Guam">Guam</option>
-									<option value="Hawaii">Hawaii</option>
-									<option value="Idaho">Idaho</option>
-									<option value="Illinois">Illinois</option>
-									<option value="Indiana">Indiana</option>
-									<option value="Iowa">Iowa</option>
-									<option value="Kansas">Kansas</option>
-									<option value="Kentucky">Kentucky</option>
-									<option value="Louisiana">Louisiana</option>
-									<option value="Maine">Maine</option>
-									<option value="Maryland">Maryland</option>
-									<option value="Massachusetts">Massachusetts</option>
-									<option value="Michigan">Michigan</option>
-									<option value="Minnesota">Minnesota</option>
-									<option value="Mississippi">Mississippi</option>
-									<option value="Missouri">Missouri</option>
-									<option value="Montana">Montana</option>
-									<option value="Nebraska">Nebraska</option>
-									<option value="Nevada">Nevada</option>
-									<option value="New Hampshire">New Hampshire</option>
-									<option value="New Jersey">New Jersey</option>
-									<option value="New Mexico">New Mexico</option>
-									<option value="New York">New York</option>
-									<option value="North Carolina">North Carolina</option>
-									<option value="North Dakota">North Dakota</option>
-									<option value="Northern Marianas Islands">Northern Marianas Islands</option>
-									<option value="Ohio">Ohio</option>
-									<option value="Oklahoma">Oklahoma</option>
-									<option value="Oregon">Oregon</option>
-									<option value="Pennsylvania">Pennsylvania</option>
-									<option value="Puerto Rico">Puerto Rico</option>
-									<option value="Rhode Island">Rhode Island</option>
-									<option value="South Carolina">South Carolina</option>
-									<option value="South Dakota">South Dakota</option>
-									<option value="Tennessee">Tennessee</option>
-									<option value="Texas">Texas</option>
-									<option value="Utah">Utah</option>
-									<option value="Vermont">Vermont</option>
-									<option value="Virginia">Virginia</option>
-									<option value="Virgin Islands">Virgin Islands</option>
-									<option value="Washington">Washington</option>
-									<option value="West Virginia">West Virginia</option>
-									<option value="Wisconsin">Wisconsin</option>
-									<option value="Wyoming">Wyoming</option>
+
 								</select>
 						</div>
 					</div>
@@ -137,15 +98,25 @@
 						</div>
 					</div>
 
-					<div class="col-md-4">
-						<div class="form-group">
+					<div class="col-md-8 ">
+						<div class="form-group DOB-div">
 							<label class="col-form-label">Date of Birth</label>
-							<input id="DOB_input" type= "text" class="form-control"  placeholder="MM/DD/YYYY">
+							<div id="DOBselect_div">
+									<select id="DOBMonth_select" class="select-DOB">
+											<option value ="Month">Month</option>
+									</select>
+									<select id="DOBDay_select" class="select-DOB">
+											<option value ="Day">Day</option>
+									</select>
+									<select id="DOBYear_select" class="select-DOB">
+											<option value ="Year">Year</option>
+									</select>
+							</div>
 							<span id="DOB_err" hidden></span>
 						</div>
 					</div>
 				</div>
-
+				<hr>
 				<div class = "row" id="Spouse_row">
 					<div class="col-md-4">
 						<div class="form-group">
@@ -157,7 +128,7 @@
 						</div>
 					</div>
 
-					<div id="SpouseForm_col" class="col-md-8" hidden>
+					<div id="SpouseForm_col" class="col-md-8">
 						<div class="form-group">
 							<div>
 								<label class="col-form-label"> Spouse first name </label>
@@ -171,14 +142,69 @@
 							<br/>
 							<div>
 								<label class="col-form-label"> Spouse Date of Birth </label>
-								<input name="SpouseDOB_input" class="form-control" placeholder="MM/DD/YYYY" onchange="verifyDOB(this,'DOB_err2')">
+								<div>
+									<select id="DOBSpouseMonth_select" class="select-DOB">
+											<option value ="Month">Month</option>
+									</select>
+									<select id="DOBSpouseDay_select" class="select-DOB">
+											<option value ="Day">Day</option>
+									</select>
+									<select id="DOBSpouseYear_select" class="select-DOB">
+											<option value ="Year">Year</option>
+									</select>
+								</div>
 								<span id="DOB_err2" hidden></span>
 							</div>
 						</div>
 					</div>
 				</div>
+				<hr>
+				<div class = "row" id="Child_row">
+					<div class = "col-md-4">
+						<div class = "form-group">
+							<div class ="form-check form-check-inline">
+								<p> Do you have child(ren) under 18 years old? </p>
+								<input id="Child_Yes" type="radio" value="yes" class="form-check-input" name="ChildRadio_input" onclick="displayChildForm(true)">Yes</input>
+								<input id="Child_No" type="radio" value="no" class="form-check-input" name="ChildRadio_input" onclick="displayChildForm(false)">No</input>
+							</div>
+						</div>
+					</div>
+					<div id="ChildForm_col" class = "col-md-8" >
+						<p><b>Please type their ages below and hit verify button:(must be younger than 18 yrs old)</b></p>
+						<div id="TableButton_div">
+								<div id="ChildAge_div">
+									<table id= "ChildAge_tbl" class="table table-hover">
+										<thead>
+											<tr>
+												<th>Child #</th>
+												<th>Age:</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>Child 1</td>
+												<td><input type="number" min="1" max="17" class='Childtd-input'></input> years old</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+								<div id="AddRemove_div" class="btn btn-group">
+										<button type="button" class="btn btn-success btn-sm" onclick="appendChildAgeList()">
+											<span class="glyphicon glyphicon-plus"></span> Add a child
+										</button>
+										<button type="button" class="btn btn-danger btn-sm" onclick="removeChildAgeList()">
+											<span class="glyphicon glyphicon-minus"></span> Remove a child
+										</button>
+								</div>
+						</div>
+						<span id="Childcount_span"></span>
+						<div id="ChildAgeVerify_div">
+							<button class="btn btn-primary" onclick="">Verify</button>
+							<span id="VerifySuccess_span"></span>
+						</div>
 
-
+					</div>
+				</div>
 			</form>
 		</div>
 

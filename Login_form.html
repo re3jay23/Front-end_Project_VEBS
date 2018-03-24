@@ -24,8 +24,8 @@
 			#SpouseForm_col,#ChildForm_col, #VerifySuccess_span{
 				display: none;
 			}
-			#TableButton_div{
-
+			.container{
+				margin-bottom: 100px;
 			}
 
 		</style>
@@ -83,7 +83,7 @@
 					</div>
 					<div class = "col-md-4">
 						<div class="form-group">
-							<label class="col-form-label">ZIP code</label>
+							<label class="col-form-label">ZIP code (5 digits only)</label>
 							<input class="form-control" id="ZipCode" type="number" onchange="verifyZip(this)"></input>
 							<span id="err_notification1" style="display:none">Please type correct zip code</span>
 						</div>
@@ -203,6 +203,23 @@
 							<span id="VerifySuccess_span"></span>
 						</div>
 
+					</div>
+				</div>
+				<hr>
+				<div class ="row" id="UsernamePassword_row">
+					<div class="col-md-12" class ="form-group">
+						<div id="Username_div">
+							<label class="col-2 col-form-label"> Username </label>
+							<div class="col-4">
+								<input class="form-control" type="text" id="Username_input" placeholder= "Type your username"></input>
+							</div>
+						</div>
+						<div id="Password_div">
+							<label class="col-2 col-form-label"> Password </label>
+							<div class="col-4">
+								<input class="form-control" type="text" id="Password_input"></input>
+							</div>
+						</div>
 					</div>
 				</div>
 			</form>

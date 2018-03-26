@@ -27,6 +27,9 @@
 			.container{
 				margin-bottom: 100px;
 			}
+			#UsernamePassword_row input{
+				width:50%;
+			}
 
 		</style>
 	</head>
@@ -106,7 +109,7 @@
 											<option value ="Month">Month</option>
 									</select>
 									<select id="DOBDay_select" class="select-DOB">
-											<option value ="Day">Day</option>
+											<option value ="Day">Date</option>
 									</select>
 									<select id="DOBYear_select" class="select-DOB">
 											<option value ="Year">Year</option>
@@ -189,11 +192,11 @@
 									</table>
 								</div>
 								<div id="AddRemove_div" class="btn btn-group">
-										<button type="button" class="btn btn-success btn-sm" onclick="appendChildAgeList()">
-											<span class="glyphicon glyphicon-plus"></span> Add a child
+										<button type="button" class="btn btn-sm btn-success" onclick="appendChildAgeList()">
+											<span class="glyphicon glyphicon-plus"></span> Add
 										</button>
-										<button type="button" class="btn btn-danger btn-sm" onclick="removeChildAgeList()">
-											<span class="glyphicon glyphicon-minus"></span> Remove a child
+										<button type="button" class="btn btn-sm btn-danger" onclick="removeChildAgeList()">
+											<span class="glyphicon glyphicon-minus"></span> Remove
 										</button>
 								</div>
 						</div>
@@ -208,16 +211,24 @@
 				<hr>
 				<div class ="row" id="UsernamePassword_row">
 					<div class="col-md-12" class ="form-group">
-						<div id="Username_div">
-							<label class="col-2 col-form-label"> Username </label>
+						<div id="EmailAdd_div">
+							<label class="col-2 col-form-label"> Email address </label>
 							<div class="col-4">
-								<input class="form-control" type="text" id="Username_input" placeholder= "Type your username"></input>
+								<input class="form-control" type="email" id="Email_input" placeholder= "name@example.com"></input>
 							</div>
 						</div>
+						<br>
 						<div id="Password_div">
 							<label class="col-2 col-form-label"> Password </label>
 							<div class="col-4">
-								<input class="form-control" type="text" id="Password_input"></input>
+								<input class="form-control" type="password" id="Password_input"></input>
+							</div>
+						</div>
+						<br>
+						<div id="PasswordVerify_div">
+							<label class="col-2 col-form-label"> Password Verification </label>
+							<div class="col-4">
+								<input class="form-control" type="password" id="PasswordVerify_input" placeholder="Please re-type your password"></input>
 							</div>
 						</div>
 					</div>

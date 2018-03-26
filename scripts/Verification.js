@@ -68,8 +68,9 @@ function displayChildForm(a){
 
 }
 
+//** verifyAge function is to check for 2 digits numerical input.
 function verifyAge(i,Age_span){
-	var ageFormat =(/\d{2}/).test(i.value);
+	var ageFormat =(/\S{2}/).test(i.value);
 	var age_errorspan = document.getElementById(Age_span);
 	try{
 		if(ageFormat == false || i.value.length >2) throw "Please revise and enter your age";

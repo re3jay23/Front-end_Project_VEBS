@@ -30,6 +30,10 @@
 			#UsernamePassword_row input{
 				width:50%;
 			}
+			.center-div{
+				margin: auto;
+				text-align: center;
+			}
 
 		</style>
 	</head>
@@ -40,7 +44,7 @@
 					<h1 style=" text-align:center"> User Registration</h1>
 				</div>
 			</div>
-			<form>
+			<form id ="registration_form" method="POST" action="/">
 				<div class = "row" id="Name_row">
 					<div class = "col-md-6">
 						<div class="form-group">
@@ -96,7 +100,7 @@
 					<div class= "col-md-4">
 						<div class="form-group">
 							<label class=" col-form-label">Telephone</label>
-							<input id="Telephone_input" class="form-control" onchange="verifyPhone(this)" placeholder="(XXX)XXX-XXXX">
+							<input id="Telephone_input" class="form-control" placeholder="(XXX)XXX-XXXX">
 							<span id="Telephone_notification" hidden>Please type 10-digit phone numbers</span>
 						</div>
 					</div>
@@ -126,7 +130,7 @@
 							<div class="form-check form-check-inline">
 								<p> Do you have a spouse?</p>
 								<input id="Spouse_Yes" class="form-check-input" type="radio" name="Spouse_radio" value="Yes" onclick="displaySpouseForm(true)">Yes</input>
-								<input id="Spouse_No" class="form-check-input" type="radio" name="Spouse_radio" value="No" onclick="displaySpouseForm(false)">No</input>
+								<input id="Spouse_No" class="form-check-input" type="radio" name="Spouse_radio" value="No" onclick="displaySpouseForm(false)" checked="" active>No</input>
 							</div>
 						</div>
 					</div>
@@ -168,7 +172,7 @@
 							<div class ="form-check form-check-inline">
 								<p> Do you have child(ren) under 18 years old? </p>
 								<input id="Child_Yes" type="radio" value="yes" class="form-check-input" name="ChildRadio_input" onclick="displayChildForm(true)">Yes</input>
-								<input id="Child_No" type="radio" value="no" class="form-check-input" name="ChildRadio_input" onclick="displayChildForm(false)">No</input>
+								<input id="Child_No" type="radio" value="no" class="form-check-input" name="ChildRadio_input" onclick="displayChildForm(false)" checked="" active>No</input>
 							</div>
 						</div>
 					</div>
@@ -183,10 +187,10 @@
 												<th>Age:</th>
 											</tr>
 										</thead>
-										<tbody>
+										<tbody id ='ChildAge_tbl_tbody'>
 											<tr>
 												<td>Child 1</td>
-												<td><input type="number" min="1" max="17" class='Childtd-input'></input> years old</td>
+												<td><input type='number' class='Childtd-input'></input> years old</td>
 											</tr>
 										</tbody>
 									</table>
@@ -195,14 +199,14 @@
 										<button type="button" class="btn btn-sm btn-success" onclick="appendChildAgeList()">
 											<span class="glyphicon glyphicon-plus"></span> Add
 										</button>
-										<button type="button" class="btn btn-sm btn-danger" onclick="removeChildAgeList()">
+										<button type="button" class="btn btn-sm btn-danger" onclick="removeChildAgeList()" >
 											<span class="glyphicon glyphicon-minus"></span> Remove
 										</button>
 								</div>
 						</div>
 						<span id="Childcount_span"></span>
 						<div id="ChildAgeVerify_div">
-							<button class="btn btn-primary" onclick="">Verify</button>
+							<button class="btn btn-default" onclick="#">Verify</button>
 							<span id="VerifySuccess_span"></span>
 						</div>
 
@@ -210,7 +214,7 @@
 				</div>
 				<hr>
 				<div class ="row" id="UsernamePassword_row">
-					<div class="col-md-12" class ="form-group">
+					<div class="col-md-12 form-group">
 						<div id="EmailAdd_div">
 							<label class="col-2 col-form-label"> Email address </label>
 							<div class="col-4">
@@ -230,6 +234,13 @@
 							<div class="col-4">
 								<input class="form-control" type="password" id="PasswordVerify_input" placeholder="Please re-type your password"></input>
 							</div>
+						</div>
+					</div>
+				</div>
+				<div class ="row" id="SubmitButton_row">
+					<div class="col-md-12">
+						<div class="form-group center-div">
+							<button id="Submit_btn" class="btn btn-lg btn-primary" type="submit" value="submit">Submit</button>
 						</div>
 					</div>
 				</div>

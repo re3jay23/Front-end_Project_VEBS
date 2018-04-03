@@ -2,5 +2,9 @@
   "name": "Project_VEBS",
   "version": "",
   "main": "Login_form.html",
-  "dependencies": {}
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.3",
+    "mysql": "^2.15.0"
+  }
 }

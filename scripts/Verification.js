@@ -17,35 +17,43 @@ function verifyZip(input){
 	}
 
 }
-function verifyPhone(i){
+function verifyPhone(){
 
-	var notification = document.getElementById("Telephone_notification");
-	var telephoneFormat =(/\(?\d{3}[\)|-](\d{3})-(\d{4})/).test(i.value);
-	try{
-		if(telephoneFormat == false || i.value.length >13) throw "Please type 10 digit phone number in the following format (123)456-7891";
-		//else if(type2) throw "Please type as in this format (XXX)XXX-XXXX";
-		else notification.style.display ="none";
-
-	}
-	catch(err){
-		notification.innerHTML = err;
-		notification.setAttribute("style","display: block; color:red")
-	}
+	// var notification = document.getElementById("Telephone_notification");
+	// var telephoneFormat =(/\(?\d{3}[\)|-](\d{3})-(\d{4})/).test(i.value);
+	// try{
+	// 	if(telephoneFormat == false || i.value.length >13) throw "Please type 10 digit phone number in the following format (123)456-7891";
+	// 	//else if(type2) throw "Please type as in this format (XXX)XXX-XXXX";
+	// 	else notification.style.display ="none";
+	//
+	// }
+	// catch(err){
+	// 	notification.innerHTML = err;
+	// 	notification.setAttribute("style","display: block; color:red")
+	// }
+		document.getElementById('Telephone_input').addEventListener('input', function (e) {
+	  var x = e.target.value.replace(/\D/g, '').match(/(\d{3})(\d{3})(\d{4})/);
+	  e.target.value = '(' + x[1] + ') ' + x[2] + '-' + x[3];
+	})
 
 }
-function verifyDOB(i,DOB_span){
-	var correctDOB = (/^(0?[1-9]|1[012])[\/](0?[1-9]|[12][0-9]|3[01])[\/](19\d{2}|20[012][1-8])/).test(i.value);
-	var DB_errorspan= document.getElementById(DOB_span);
-	try{
-		if(correctDOB == false) throw "incorrect";
-		else{
-			DB_errorspan.style.display ="none";
-		}
-	}
-	catch(err){
-		DB_errorspan.innerHTML = "Input is "+ err;
-		DB_errorspan.setAttribute("style","display: block; color:red")
-	}
+function verifyDOB(target){
+	// var correctDOB = (/^(0?[1-9]|1[012])[\/](0?[1-9]|[12][0-9]|3[01])[\/](19\d{2}|20[012][1-8])/).test(i.value);
+	// var DB_errorspan= document.getElementById(DOB_span);
+	// try{
+	// 	if(correctDOB == false) throw "incorrect";
+	// 	else{
+	// 		DB_errorspan.style.display ="none";
+	// 	}
+	// }
+	// catch(err){
+	// 	DB_errorspan.innerHTML = "Input is "+ err;
+	// 	DB_errorspan.setAttribute("style","display: block; color:red")
+	// }
+	document.getElementById(target).addEventListener('blur',function(e){
+		var x = e.target.value.replace(/\D/g,'').match(/(0?[1-9]|1[012])(0?[1-9]|[12][0-9]|3[01])(19\d{2}|20[012][1-5])/);
+		e.target.value = x[1]+'/'+x[2]+'/'+x[3];
+	})
 }
 
 //** to display/ hide Spouse form
@@ -132,7 +140,7 @@ var childCounter =2;
 function appendChildAgeList(){
 //console.log("in appendChildAgeList function");
 
-	var textholder ="<tr id='child_tr-"+childCounter+"'><td> Child "+childCounter+"</td><td><input type='number' min='1' max='17' class='Childtd-input'></input> years old</td></tr>"
+	var textholder ="<tr id='child_tr-"+childCounter+"'><td> Child "+childCounter+"</td><td><input type='number' class='Childtd-input'></input> years old</td></tr>"
 	childCounter +=1;
 	$('#ChildAge_tbl').append(textholder);
 }
@@ -156,7 +164,17 @@ function removeChildAgeList(){
 
 }
 
+function verifyChildAge(){
+	var listChild = $('.Childtd-input').each(function(){
+
+	});
+
+
+}
+
 $(document).ready(function(){
 	initializeDayMonthYear();
 	initializeState();
+	verifyPhone();
+
 })

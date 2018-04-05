@@ -77,19 +77,19 @@ function displayChildForm(a){
 }
 
 //** verifyAge function is to check for 2 digits numerical input.
-function verifyAge(i,Age_span){
-	var ageFormat =(/\S{2}/).test(i.value);
-	var age_errorspan = document.getElementById(Age_span);
-	try{
-		if(ageFormat == false || i.value.length >2) throw "Please revise and enter your age";
-		else age_errorspan.style.display ="none";
-	}
-	catch(err){
-		age_errorspan.innerHTML = err;
-		age_errorspan.setAttribute("style","display: block; color:red")
-
-	}
-}
+// function verifyAge(i,Age_span){
+// 	var ageFormat =(/\S{2}/).test(i.value);
+// 	var age_errorspan = document.getElementById(Age_span);
+// 	try{
+// 		if(ageFormat == false || i.value.length >2) throw "Please revise and enter your age";
+// 		else age_errorspan.style.display ="none";
+// 	}
+// 	catch(err){
+// 		age_errorspan.innerHTML = err;
+// 		age_errorspan.setAttribute("style","display: block; color:red")
+//
+// 	}
+// }
 
 //** initialize State dropdown list
 function initializeState(){
@@ -140,7 +140,7 @@ var childCounter =2;
 function appendChildAgeList(){
 //console.log("in appendChildAgeList function");
 
-	var textholder ="<tr id='child_tr-"+childCounter+"'><td> Child "+childCounter+"</td><td><input type='number' class='Childtd-input'></input> years old</td></tr>"
+	var textholder ="<tr id='Child"+childCounter+"_age'><td> Child "+childCounter+"</td><td><input type='number'  min='0' max='17' id ='Child"+childCounter+"_input'class='Childtd-input' onchange='verifyChildAge(this.value,this.id)'></input> years old</td></tr>";
 	childCounter +=1;
 	$('#ChildAge_tbl').append(textholder);
 }
@@ -164,11 +164,58 @@ function removeChildAgeList(){
 
 }
 
-function verifyChildAge(){
-	var listChild = $('.Childtd-input').each(function(){
+function verifyChildAge(t,t_id){
+	var age = t;
+	var tid = t_id;
 
-	});
+	try{
+		if(document.getElementById(t_id).validity.rangeOverflow || document.getElementById(t_id).validity.rangeUnderflow ) throw "Invalid age";
+		else{
+			$("#Childcount_span").text("");
+			$(".add-remove").attr('disabled',false);
+			return true;
+		}
+	}catch(err){
+		$("#Childcount_span").text(err);
+		$("#"+t_id).select();
+		$(".add-remove").attr('disabled',true);
+		return false;
+	}
 
+
+}
+
+function validatePattern(str){
+	var re = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+  try{
+		if(!re.test(str)) throw "Please follow the direction above"
+		else{
+			console.log("good password: ", str);
+			$("#Password_span").text("");
+			return true;
+		}
+	} catch(e){
+			console.log(e);
+			$("#Password_span").text(e);
+			$("#Password_input").select();
+			return false;
+	}
+}
+
+function validatePassword(t){
+	var pass_val= $('#Password_input').val();
+	var passV_val = t;
+	try{
+		if (pass_val != passV_val) throw "passwords don't match";
+		else{
+			$('#PasswordVerify_span').text("Password verified");
+			return true
+		}
+	}catch(e){
+		$('#PasswordVerify_span').text(e);
+		$('#PasswordVerify_input').select();
+		return false;
+	}
 
 }
 
@@ -176,5 +223,5 @@ $(document).ready(function(){
 	initializeDayMonthYear();
 	initializeState();
 	verifyPhone();
-
+	$("#Password_input").attr("pattern",'/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/');
 })

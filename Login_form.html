@@ -34,6 +34,10 @@
 				margin: auto;
 				text-align: center;
 			}
+			.error-span{
+				color:red;
+				font-size: 10pt;
+			}
 
 		</style>
 	</head>
@@ -177,7 +181,7 @@
 						</div>
 					</div>
 					<div id="ChildForm_col" class = "col-md-8" >
-						<p><b>Please type their ages below and hit verify button:(must be younger than 18 yrs old)</b></p>
+						<p><b>Please type their ages (must be younger than 18 yrs old)</b></p>
 						<div id="TableButton_div">
 								<div id="ChildAge_div">
 									<table id= "ChildAge_tbl" class="table table-hover">
@@ -190,25 +194,23 @@
 										<tbody id ='ChildAge_tbl_tbody'>
 											<tr>
 												<td>Child 1</td>
-												<td><input type='number' class='Childtd-input'></input> years old</td>
+												<td><input id='Child1_age' type='number' min='0' max='17' class='Childtd-input' onchange='verifyChildAge(this.value,this.id)'></input> years old</td>
 											</tr>
 										</tbody>
 									</table>
+									<span id="Childcount_span" class="error-span"></span>
 								</div>
+								<span id="Childcount_span"></span>
 								<div id="AddRemove_div" class="btn btn-group">
-										<button type="button" class="btn btn-sm btn-success" onclick="appendChildAgeList()">
+										<button type="button" class="btn btn-sm btn-success add-remove" onclick="appendChildAgeList()">
 											<span class="glyphicon glyphicon-plus"></span> Add
 										</button>
-										<button type="button" class="btn btn-sm btn-danger" onclick="removeChildAgeList()" >
+										<button type="button" class="btn btn-sm btn-danger add-remove" onclick="removeChildAgeList()" >
 											<span class="glyphicon glyphicon-minus"></span> Remove
 										</button>
 								</div>
 						</div>
-						<span id="Childcount_span"></span>
-						<div id="ChildAgeVerify_div">
-							<button class="btn btn-default" onclick="#">Verify</button>
-							<span id="VerifySuccess_span"></span>
-						</div>
+
 
 					</div>
 				</div>
@@ -225,16 +227,22 @@
 						<div id="Password_div">
 							<label class="col-2 col-form-label"> Password </label>
 							<div class="col-4">
-								<input class="form-control" type="password" id="Password_input"></input>
+								<div>
+									<span style="font-size:8pt;color:gray">Password needs to be at least 8 characters consisting of uppercase and lowercase letters, numbers, and wild characters (!@#$%^&*)</span>
+								</div>
+								<input class="form-control" type="password" id="Password_input" onchange="validatePattern(this.value)"></input>
+								<span id="Password_span" class="error-span"></span>
 							</div>
 						</div>
 						<br>
 						<div id="PasswordVerify_div">
 							<label class="col-2 col-form-label"> Password Verification </label>
 							<div class="col-4">
-								<input class="form-control" type="password" id="PasswordVerify_input" placeholder="Please re-type your password"></input>
+								<input class="form-control" type="password" id="PasswordVerify_input" placeholder="Please re-type your password" onchange='validatePassword(this.value)'></input>
+								<span id="PasswordVerify_span" class="error-span"></span>
 							</div>
 						</div>
+
 					</div>
 				</div>
 				<div class ="row" id="SubmitButton_row">

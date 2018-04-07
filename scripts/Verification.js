@@ -124,6 +124,10 @@ function initializeDayMonthYear(){
 			appendMonth +="<option value='"+months[x]+"'>"+months[x]+"</option>";
 
 	}
+	for(var i = 1; i<=31;i++){
+		 appendDay +="<option value='"+i+"'>"+i+"</option>";
+
+	}
 	for(var y = 2018; y>=1950;y--){
 		appendYear +="<option value='"+y+"'>"+y+"</option>";
 
@@ -146,15 +150,18 @@ function appendChildAgeList(){
 }
 
 function removeChildAgeList(){
-	try{
-		if(childCounter == 2) throw "Cannot remove."
-		else{
-			var lastID = "#child_tr-"+(childCounter-1);
 
+
+	try{
+		if(childCounter == 2){
+			throw "Cannot remove";
+		}
+		else{
+			var lastID = "#Child"+(childCounter-1)+"_age";
 			$(lastID).remove();
 			childCounter -=1;
-
 		}
+		
 	}catch(err){
 		$('#Childcount_span').fadeIn(3000,function(){
 			$('#Childcount_span').text(err);
@@ -187,18 +194,15 @@ function verifyChildAge(t,t_id){
 
 function validatePattern(str){
 	var re = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
-  try{
-		if(!re.test(str)) throw "Please follow the direction above"
-		else{
-			console.log("good password: ", str);
-			$("#Password_span").text("");
-			return true;
-		}
-	} catch(e){
-			console.log(e);
-			$("#Password_span").text(e);
-			$("#Password_input").select();
-			return false;
+	
+	if(!re.test(str)){
+		$("#Password_span").text("Please follow the direction above");
+		$("#Password_input").select();
+		return false;
+	} 
+	else{
+		$("#Password_span").text("");
+		return true;
 	}
 }
 
@@ -208,6 +212,7 @@ function validatePassword(t){
 	try{
 		if (pass_val != passV_val) throw "passwords don't match";
 		else{
+			$('#PasswordVerify_span').css("color",'green')
 			$('#PasswordVerify_span').text("Password verified");
 			return true
 		}
@@ -217,6 +222,46 @@ function validatePassword(t){
 		return false;
 	}
 
+}
+
+function checkForm(form){
+	if(form.First_Name.value ==""){
+		alert("Please fill out your first name");
+		form.First_Name.focus();
+		return false;
+	}
+	if(form.Last_Name.value ==""){
+		alert("Error:Please fill out your last name");
+		form.Last_Name.focus();
+		return false;
+	}
+	if(form.Address.value ==""){
+		alert("Error: Please fill out your address");
+		form.Address.focus();
+		return false;
+	}
+	if(form.City.value ==""){
+		alert("Error: Please fill out city correctly");
+		form.City.focus();
+		return false;		
+	}
+	if(form.Spouse_Yes.checked){
+		if(form.Spouse_First_Name.value ==""){
+			alert("Please fill out your spouse first name");
+			form.Spouse_First_Name.focus();
+			return false;
+		}
+		if(form.Spouse_Last_Name.value ==""){
+			alert("Please fill out your spouse last name");
+			form.Spouse_Last_Name.focus();
+			return false;
+		}
+	}
+	if(form.Spouse_No.checked){
+		form.Spouse_First_Name.value =="";
+		form.Spouse_Last_Name.value =="";
+	}
+	return true;
 }
 
 $(document).ready(function(){

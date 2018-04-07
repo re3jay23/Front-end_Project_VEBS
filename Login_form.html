@@ -13,8 +13,15 @@
 		<!-- Bootstrap stylesheet -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 		<!-- CSS -->
-		<style>
-
+		<style type="text/css">
+		.container{
+				max-width:850px;
+				margin:auto;
+				padding: 40px 40px;
+				box-shadow: 0 5px 5px #888888;
+				-moz-box-shadow: 0px 5px 5px #888888;
+				-webkit-box-shadow: 0px 5px 5px #888888;
+			}
 			.select-DOB{
 					width:30%;
 					height:2.5em;
@@ -39,6 +46,7 @@
 				font-size: 10pt;
 			}
 
+
 		</style>
 	</head>
 	<body>
@@ -48,13 +56,13 @@
 					<h1 style=" text-align:center"> User Registration</h1>
 				</div>
 			</div>
-			<form id ="registration_form" method="POST" action="/">
+			<form id ="registration_form" method="POST" action="/" onsubmit='return checkForm(this)'>
 				<div class = "row" id="Name_row">
 					<div class = "col-md-6">
 						<div class="form-group">
 							<label class="col-2 col-form-label"> First name </label>
 							<div class="col-4">
-								<input class="form-control" type="text" id="First_Name" placeholder= "Type your first name here."></input>
+								<input class="form-control" type="text" id="First_Name" placeholder= "Type your first name here." required autofocus>
 							</div>
 						</div>
 					</div>
@@ -62,7 +70,7 @@
 						<div class="form-group ">
 							<label class="col-2 col-form-label"> Last name </label>
 							<div class="col-4">
-								<input class="form-control" type="text" id="Last_Name" placeholder= "Type your last name here."></input>
+								<input class="form-control" type="text" id="Last_Name" placeholder= "Type your last name here." required autofocus></input>
 							</div>
 						</div>
 					</div>
@@ -72,7 +80,7 @@
 						<div class= "form-group">
 							<label class="col-2 col-form-label">Address </label>
 							<div class ="col-10">
-								<input class="form-control" id="Address_1" type="text"></input>
+								<input class="form-control" id="Address" type="text" required autofocus>
 							</div>
 						</div>
 					</div>
@@ -81,7 +89,7 @@
 					<div class = "col-md-4">
 						<div class="form-group">
 							<label class="col-form-label">City</label>
-							<input class="form-control" id="City" type="text"></input>
+							<input class="form-control" id="City" type="text" required autofocus>
 						</div>
 					</div>
 					<div class = "col-md-4">
@@ -95,7 +103,7 @@
 					<div class = "col-md-4">
 						<div class="form-group">
 							<label class="col-form-label">ZIP code (5 digits only)</label>
-							<input class="form-control" id="ZipCode" type="number" onchange="verifyZip(this)"></input>
+							<input class="form-control" id="ZipCode" type="number" onchange="verifyZip(this)" required autofocus>
 							<span id="err_notification1" style="display:none">Please type correct zip code</span>
 						</div>
 					</div>

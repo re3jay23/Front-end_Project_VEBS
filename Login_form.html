@@ -2,12 +2,12 @@
 <html>
 	<head>
 
-
-		<!-- Latest compiled and minified JavaScript -->
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 		<!-- Latest minified JQuery -->
 		<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous">
 		</script>
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
 		<!-- Verification JS -->
 		<script type="text/javascript" src="./scripts/Verification.js"></script>
 		<!-- Bootstrap stylesheet -->
@@ -103,7 +103,7 @@
 					<div class = "col-md-4">
 						<div class="form-group">
 							<label class="col-form-label">ZIP code (5 digits only)</label>
-							<input class="form-control" id="ZipCode" type="number" onchange="verifyZip(this)" required autofocus>
+							<input class="form-control" id="ZipCode" type="number" oninput="verifyZip(this)" required autofocus>
 							<span id="err_notification1" style="display:none">Please type correct zip code</span>
 						</div>
 					</div>

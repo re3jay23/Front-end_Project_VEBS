@@ -1,9 +1,0 @@
-var name = $("#Card_Holder");
-var creditcardnumber =$("Card_Number");
-var cvv=$("#CVV");
-var month =$("#Month");
-var year =$("#Year");
-var mastercard = $("#mastercard");
-var confirmButton = $("#Confirm");
-var visa = $("#visa");
-var amex = $("#amex");

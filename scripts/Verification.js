@@ -5,8 +5,8 @@ var temp_number =[];
 const numerical_position=[1,2,3,5,6,7,9,10,11,12];
 
 
-function verifyZip(input){
-	console.log("input length",input.value.length);
+function verifyZip(t){
+	// console.log("input length",input.value.length);
 	if(input.value.length < 5 || input.value.length > 5){
 		//console.log("here!")
 		var err_disp = document.getElementById("err_notification1");
@@ -15,6 +15,7 @@ function verifyZip(input){
 	else{
 		document.getElementById("err_notification1").style.display="none";
 	}
+
 
 }
 function verifyPhone(){
@@ -31,8 +32,8 @@ function verifyPhone(){
 	// 	notification.innerHTML = err;
 	// 	notification.setAttribute("style","display: block; color:red")
 	// }
-		document.getElementById('Telephone_input').addEventListener('input', function (e) {
-	  var x = e.target.value.replace(/\D/g, '').match(/(\d{3})(\d{3})(\d{4})/);
+	 document.getElementById('Telephone_input').addEventListener('input', function (e) {
+	  var x = e.target.value.replace(/\D/g,'').match(/(\d{3})(\d{3})(\d{4})/);
 	  e.target.value = '(' + x[1] + ') ' + x[2] + '-' + x[3];
 	})
 
@@ -90,6 +91,7 @@ function displayChildForm(a){
 //
 // 	}
 // }
+
 
 //** initialize State dropdown list
 function initializeState(){
@@ -230,6 +232,7 @@ function checkForm(form){
 		form.First_Name.focus();
 		return false;
 	}
+	
 	if(form.Last_Name.value ==""){
 		alert("Error:Please fill out your last name");
 		form.Last_Name.focus();
@@ -268,5 +271,6 @@ $(document).ready(function(){
 	initializeDayMonthYear();
 	initializeState();
 	verifyPhone();
+	verifyNames()
 	$("#Password_input").attr("pattern",'/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/');
 })
